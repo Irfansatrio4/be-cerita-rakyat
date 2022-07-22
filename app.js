@@ -29,7 +29,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", (req, res) =>
-  res.send("Selamat Datang di API Peta Pengetahuan Tradisional")
+  res.send("Selamat Datang di API Data Cerita Rakyat")
 );
 app.use("/api", apiRouter);
 
