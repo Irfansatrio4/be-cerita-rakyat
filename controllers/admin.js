@@ -5,7 +5,9 @@ const bcrypt = require("bcrypt");
 
 module.exports.login = async function (req, res) {
   try {
-    const admin = await db.admin.findOne({ where: { userName: req.body.userName } });
+    const admin = await db.admin.findOne({
+      where: { userName: req.body.userName },
+    });
     if (admin) {
       const password = bcrypt.compareSync(req.body.password, admin.password);
       if (password) {
@@ -17,7 +19,7 @@ module.exports.login = async function (req, res) {
         res.cookie("jwt", token, {
           maxAge: 60 * 60 * 1000,
           httpOnly: true,
-        //   secure: true,
+          secure: true,
           sameSite: "none",
         });
         return res.status(200).json({
