@@ -34,12 +34,12 @@ module.exports.login = async function (req, res) {
       }
       return res.status(401).json({
         success: false,
-        message: "Email and Password didn't match",
+        message: "Username and Password didn't match",
       });
     }
     return res.status(401).json({
       success: false,
-      message: "Email not registered",
+      message: "Username not registered",
     });
   } catch (error) {
     return res.status(400).json({
