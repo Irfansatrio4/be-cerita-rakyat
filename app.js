@@ -12,9 +12,8 @@ const app = express();
 const allowedOrigin = ["http://localhost:3000/", "http://localhost:3000"];
 
 const corsOptions = {
-  // origin: allowedOrigin,
+  origin: allowedOrigin,
   credentials: true, //access-control-allow-cr0edentials:true
-  "Access-Control-Allow-Origin": "*",
   optionSuccessStatus: 200,
 };
 
