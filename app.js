@@ -9,7 +9,11 @@ const apiRouter = require("./routes/index");
 
 const app = express();
 
-const allowedOrigin = ["http://localhost:3000/", "http://localhost:3000"];
+const allowedOrigin = [
+  "http://localhost:3000/",
+  "http://localhost:3000",
+  "https://cerita-rakyat.vercel.app",
+];
 
 const corsOptions = {
   origin: allowedOrigin,
