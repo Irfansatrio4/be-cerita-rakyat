@@ -9,7 +9,7 @@ const apiRouter = require("./routes/index");
 
 const app = express();
 
-const allowedOrigin = "*";
+const allowedOrigin = ["http://localhost:3000/", "http://localhost:3000"];
 
 const corsOptions = {
   origin: allowedOrigin,
