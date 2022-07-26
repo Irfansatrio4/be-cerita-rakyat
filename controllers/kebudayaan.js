@@ -145,7 +145,7 @@ module.exports.createBudaya = async function (req, res) {
     provinsiId,
   };
 
-  if (req.file) updateData.image = req.file.path;
+  if (req.file) updateData.gambar = req.file.path;
 
   try {
     // check if name exist
@@ -185,7 +185,7 @@ module.exports.updateBudayaById = async function (req, res) {
       deskripsi,
     };
 
-    if (req.file) editData.image = req.file.path;
+    if (req.file) editData.gambar = req.file.path;
 
     const editedData = await db.kebudayaan.findByPk(id);
 
@@ -225,7 +225,7 @@ module.exports.deleteBudayaById = async function (req, res) {
       });
     }
 
-    if (deletedData.image) deleteCloudPicture(deletedData.image);
+    if (deletedData.gambar) deleteCloudPicture(deletedData.gambar);
 
     await deletedData.destroy();
 

@@ -20,8 +20,8 @@ cloudinary.getStorage = (type) => {
   });
 };
 
-cloudinary.deleteCloudPicture = (image) => {
-  const pictArr = image.split("/");
+cloudinary.deleteCloudPicture = (gambar) => {
+  const pictArr = gambar.split("/");
   const cloudFileName = pictArr
     .slice(pictArr.indexOf("Budaya"))
     .join("/")
