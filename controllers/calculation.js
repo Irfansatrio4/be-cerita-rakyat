@@ -1,23 +1,23 @@
 const db = require("../models/index.js");
 const { sequelize } = require("../models/index.js");
-const math = require('mathjs');
+const math = require("mathjs");
 
 module.exports.getCalculation = async function (req, res) {
   try {
     const dataBudaya = await db.kebudayaan.findAll();
     const dataProvinsi = await db.provinsi.findAll();
     const totalIndividual = await db.kebudayaan.findAll({
-      attributes: [[sequelize.fn('count', '*'), 'totalBudaya']],
+      attributes: [[sequelize.fn("count", "*"), "totalBudaya"]],
       include: [
         {
-          model: db.provinsi
-        }
+          model: db.provinsi,
+        },
       ],
-      group: ['provinsi.id']
+      group: ["provinsi.id"],
     });
 
     let arrTotal = [];
-    totalIndividual.forEach(item => {
+    totalIndividual.forEach((item) => {
       arrTotal.push(parseInt(item.dataValues.totalBudaya) + 1);
     });
 
@@ -27,9 +27,13 @@ module.exports.getCalculation = async function (req, res) {
     const totalProvinsi = dataProvinsi.length;
     const average = totalBudaya / totalProvinsi;
 
-    const n = 0.8;
-    const low = average - (n * stdev);
-    const high = average + (n * stdev);
+    let n = 0.8;
+
+    if (req.query.nilaiN) {
+      n = req.query.nilaiN;
+    }
+    const low = average - n * stdev;
+    const high = average + n * stdev;
 
     const dataCalculate = {
       total: totalBudaya,
@@ -37,18 +41,18 @@ module.exports.getCalculation = async function (req, res) {
       average,
       stdev,
       low,
-      high
-    }
+      high,
+    };
     return res.status(200).json({
       success: true,
-      message: 'success',
-      data: dataCalculate
-    })
+      message: "success",
+      data: dataCalculate,
+    });
   } catch (error) {
     return res.status(400).json({
       sucess: false,
       error: error,
-      message: error.message
-    })
+      message: error.message,
+    });
   }
-}
+};

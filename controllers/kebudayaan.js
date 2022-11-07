@@ -133,7 +133,6 @@ module.exports.getBudayaDetail = async function (req, res) {
 };
 
 module.exports.createBudaya = async function (req, res) {
-  console.log("hit");
   const { namaBudaya, tahun, deskripsi, jenisKebudayaanId, provinsiId } =
     req.body;
 
@@ -148,7 +147,6 @@ module.exports.createBudaya = async function (req, res) {
   if (req.file) updateData.gambar = req.file.path;
 
   try {
-    // check if name exist
     const existBudaya = await db.kebudayaan.findOne({ where: { namaBudaya } });
     if (existBudaya) {
       return res.status(409).json({

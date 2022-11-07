@@ -24,7 +24,7 @@ module.exports.login = async function (req, res) {
         });
         return res.status(200).json({
           success: true,
-          message: "Login Sucess",
+          message: "Login Berhasil",
           data: {
             idAdmin: admin.id,
             userName: admin.userName,
@@ -34,12 +34,12 @@ module.exports.login = async function (req, res) {
       }
       return res.status(401).json({
         success: false,
-        message: "Username and Password didn't match",
+        message: "Username and Password tidak cocok",
       });
     }
     return res.status(401).json({
       success: false,
-      message: "Username not registered",
+      message: "Username belum diregister",
     });
   } catch (error) {
     return res.status(400).json({
